@@ -3,6 +3,11 @@
   "port": 5432,
   "host": "localhost",
   "username": "docker",
-  "password": "root",
-  "database": "carrent"
+  "password": "senha123",
+  "database": "carrent",
+  "migrations": ["./src/database/*.ts"],
+  "entities": ["./src/modules/**/entities/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
 }
