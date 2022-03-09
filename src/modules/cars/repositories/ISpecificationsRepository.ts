@@ -1,5 +1,3 @@
-// import { ICreateCategoryDTO } from './ICategoriesRepository'
-
 import { Specification } from "../entities/Specification";
 
 interface ICreateSpecificationDTO{
