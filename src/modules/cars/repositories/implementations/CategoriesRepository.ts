@@ -5,7 +5,6 @@ import {
   ICreateCategoryDTO 
 } from '../ICategoriesRepository'
 
-
 class CategoriesRepository  
   implements ICategoriesRepository{
   private repository: Repository<Category>;
@@ -15,12 +14,7 @@ class CategoriesRepository
   }
 
   async create({name, description}: ICreateCategoryDTO): Promise<void> {
-
-    const category = this.repository.create({
-      description,
-      name
-    });
-  
+    const category = this.repository.create({description, name});
     await this.repository.save(category)
   }
 
