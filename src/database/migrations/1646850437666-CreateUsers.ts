@@ -11,11 +11,11 @@ export class CreateUsers1646850437666 implements MigrationInterface {
               {
                 name: 'id',
                 type: 'uuid',
-                isPrimary: true,
+                isPrimary: true
               },
               {
                 name: 'name',
-                type: 'varchar',
+                type: 'varchar'
               },
               {
                 name: 'username',
@@ -28,14 +28,14 @@ export class CreateUsers1646850437666 implements MigrationInterface {
               },
               {
                 name: 'email',
-                type: 'varchar',
+                type: 'varchar'
               },
               {
-                name: 'diver_license',
-                type: 'varchar',
+                name: 'driver_license',
+                type: 'varchar'
               },
               {
-                name: 'admin',
+                name: 'isAdmin',
                 type: 'boolean',
                 default: false
               },

@@ -1,16 +1,13 @@
 import { v4 as uuidV4 } from 'uuid';
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
 
-@Entity()
+@Entity('users')
 class User {
   @PrimaryColumn()
   id?: string;    
 
   @Column()
   name: string;
-
-  @Column()
-  username: string;
 
   @Column()
   email: string;  
@@ -22,9 +19,9 @@ class User {
   driver_license: string;
 
   @Column()
-  admin: boolean;
+  isAdmin: boolean;
 
-  @Column()
+  @CreateDateColumn()
   created_at: Date;
 
   constructor() {
