@@ -3,6 +3,7 @@ import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
 import { UsersRepository } from "../../repositories/implementations/UserRepositoy";
+import { AppError } from "../../../../errors/AppError";
 
 
 
@@ -29,12 +30,12 @@ class AuthenticateUserUseCase {
   async execute({email, password}){
     const user = await this.usersRepository.findByEmail(email);
     if(!user){
-      throw new Error('Email or password incorret');
+      throw new AppError('Email or password incorret', 401);
     }
     const passwordMatch = await compare(password, user.password);
 
     if(!passwordMatch){
-      throw new Error('Email or password incorret');
+      throw new AppError('Email or password incorret', 401);
     }
 
     const token = sign({}, 'c2293c45e40f83d22b2b93e6557404a9', {
