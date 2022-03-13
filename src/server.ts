@@ -6,7 +6,7 @@ import './shared/container'
 import swaggerFile from './swagger.json';
 
 import { router } from './routes';
-import { AppError } from './errors/AppError';
+import { AppError } from '@errors/AppError';
 
 
 
