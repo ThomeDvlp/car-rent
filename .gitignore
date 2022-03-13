@@ -1,1 +1,9 @@
-/node_modules
+coverage
+node_modules/
+.vscode/
+tmp/*
+.env/
+!tmp/.gitkeep
+dist/
+ormconfig.json
+package-lock.json/
