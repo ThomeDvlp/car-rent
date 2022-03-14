@@ -8,20 +8,20 @@ export class CreateCars1647208449383 implements MigrationInterface {
           name: "cars",
           columns: [
             {
-              name: "uuid",
-              type: "varchar",
+              name: "id",
+              type: "uuid",
               isPrimary: true
             },
             {
-              name:"name",
+              name: "name",
               type: "varchar",
             },
             {
-              name:"description",
+              name: "description",
               type: "varchar",
             },
             {
-              name:"daily_rate",
+              name: "daily_rate",
               type: "numeric",
             },
             {
@@ -50,7 +50,7 @@ export class CreateCars1647208449383 implements MigrationInterface {
               name: "created_at",
               type: "timestamp",
               default: "now()"
-            }
+            },
           ],
           foreignKeys: [
             {
@@ -60,10 +60,10 @@ export class CreateCars1647208449383 implements MigrationInterface {
               columnNames: ["category_id"],
               onDelete: "SET NULL",
               onUpdate: "SET NULL"
-            }
-          ]
+            },
+          ],
         })
-      )
+      );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

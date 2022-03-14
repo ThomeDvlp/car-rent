@@ -10,7 +10,7 @@ Não deve ser possível cadastrar um carro com placa já existente nos registros
 
 Carros cadastrados devem ter status disponível por padrão.
 
-O Usuário responsável pelo cadastro deve  administrador.
+* O Usuário responsável pelo cadastro deve  administrador.
 
 
 # Listagem de carros
