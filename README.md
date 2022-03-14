@@ -8,7 +8,6 @@ Deve ser possível cadastrar um carro novo .
 
 Não deve ser possível cadastrar um carro com placa já existente nos registros de carros já cadastrados.
 
-Não deve ser possível alterar a placa de um carro já cadastrado.
 Carros cadastrados devem ter status disponível por padrão.
 
 O Usuário responsável pelo cadastro deve  administrador.

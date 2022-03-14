@@ -8,6 +8,8 @@ class Car{
 
   description: string;
 
+  available: boolean;
+
   daily_rate: number;
 
   license_plate: string;
@@ -23,6 +25,8 @@ class Car{
   constructor() {
     if(!this.id) {
       this.id = uuidV4();
+      this.available= true;
+      this.created_at= new Date();
     }
   }
 }
