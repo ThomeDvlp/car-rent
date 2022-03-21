@@ -7,10 +7,14 @@ import { ICategoriesRepository } from "@modules/cars/repositories/ICategoriesRep
 import { ISpecificationsRepository } from "@modules/cars/repositories/ISpecificationsRepository";
 import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
 import { CarsRepository } from "@modules/cars/infra/typeorm/repositories/CarsRepositoy";
+import { ICarsImagesRepository } from "@modules/cars/repositories/ICarsImagesRepository";
+import { CarsImagesResository } from "@modules/cars/infra/typeorm/repositories/CarsImagesResository";
 
 
-
-
+container.registerSingleton<ICarsImagesRepository>(
+  "CarsImagesResository",
+  CarsImagesResository
+)
 
 container.registerSingleton<ICategoriesRepository>(
   "CategoriesRepository", 

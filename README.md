@@ -46,7 +46,7 @@ Não deve ser possível cadastrar uma especificação já existente para o mesmo
 
  **RF**
 
-Deve ser possívbel cadastrar uma imagem do carro.
+Deve ser possível cadastrar uma imagem do carro.
 
 **RNF***
 
