@@ -17,12 +17,10 @@ class CategoriesRepositoryInMemory implements ICategoriesRepository {
       this.categories.push(category);
   }
   async list(): Promise<Category[]> {
-    const all = this.categories;
-    return all;
+    return this.categories;
   }
   async findByName(name: string): Promise<Category> {
-    const category = this.categories.find(category => category.name === name);
-    return category;
+    return  this.categories.find(category => category.name === name);
   }
 }
 

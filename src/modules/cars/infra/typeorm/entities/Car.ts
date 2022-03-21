@@ -37,7 +37,7 @@ class Car{
     joinColumns: [{name: "car_id"}],
     inverseJoinColumns: [{name: "specification_id"}]
   })
-  specification: Specification[];
+  specifications: Specification[];
 
   @ManyToOne(()=> Category)
   @JoinColumn({name: 'category_id'})
