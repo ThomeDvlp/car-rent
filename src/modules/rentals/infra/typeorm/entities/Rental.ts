@@ -1,34 +1,41 @@
 import { v4 as uuidV4 } from 'uuid';    
-// import {Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
+import {
+  Column, 
+  CreateDateColumn, 
+  Entity, 
+  PrimaryColumn, 
+  UpdateDateColumn 
+} from 'typeorm';
 
-// @Entity('rentals')
+@Entity('rentals')
 class Rental {
-  // @PrimaryColumn()
-  id?: string;
+  @PrimaryColumn()
+  id: string;
 
-  // @Column()
+  @Column()
   car_id: string;
 
-  // @Column()
+  @Column()
   user_id: string;
 
-  // @Column()
+  @Column()
   start_date: Date;
 
-  // @Column()
+  @Column()
   end_date: Date;
 
-  // @Column()
+  @Column()
   total: number;
 
-  // @Column()
-  expect_return_date: Date;
+  @Column()
+  expected_return_date: Date;
 
-  // @Column()
+  @CreateDateColumn()
   created_at: Date;
 
-  // @Column()
+  @UpdateDateColumn()
   updated_at: Date;
+
   constructor(){
     if(!this.id){
       this.id = uuidV4();

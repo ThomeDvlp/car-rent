@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
 
-import { ensureAuthenticated } from '@shared/infra/http//middlewares/ansureAuthencated';
+import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthenticated';
 import { ensureAdmin } from '@shared/infra/http//middlewares/ensureAdmin';
 import uploadConfig from '@config/upload'
 import { CreateCarController } from '@modules/cars/useCases/createCar/CreataCarController';
