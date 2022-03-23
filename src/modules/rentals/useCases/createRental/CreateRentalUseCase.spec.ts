@@ -1,9 +1,8 @@
-import dayjs from "dayjs";
-
 import { RentalsRepositoryInMemory } from "@modules/rentals/repositories/in-memory/RentalsRepositoryInMemory";
 import { AppError } from "@shared/errors/AppError";
 import { CreateRentalUseCase } from "./CreateRentalUseCase";
 import { DayJsDateProvider } from "@shared/container/providers/dateProvider/implementations/DayJsDateProvider";
+import dayjs from "dayjs";
 
 let createRentalUseCase: CreateRentalUseCase;
 let rentalsRepositoryInMemory: RentalsRepositoryInMemory;
@@ -25,7 +24,7 @@ describe('Create Rental', () => {
     const rental = await createRentalUseCase.execute({
       user_id: "12345",
       car_id: "123456",
-      expect_return_date: dayAdd24hs
+      expected_return_date: dayAdd24hs
     });
 
     console.log(rental)
@@ -39,12 +38,12 @@ describe('Create Rental', () => {
       await createRentalUseCase.execute({
         user_id: "test",
         car_id: "123456",
-        expect_return_date: dayAdd24hs
+        expected_return_date: dayAdd24hs
       });
       await createRentalUseCase.execute({
         user_id: "test",
         car_id: "1234567",
-        expect_return_date: dayAdd24hs
+        expected_return_date: dayAdd24hs
       });
     }).rejects.toBeInstanceOf(AppError)
   });
@@ -54,12 +53,12 @@ describe('Create Rental', () => {
       await createRentalUseCase.execute({
         user_id: "123451",
         car_id: "test",
-        expect_return_date: dayAdd24hs
+        expected_return_date: dayAdd24hs
       });
       await createRentalUseCase.execute({
         user_id: "12345",
         car_id: "test",
-        expect_return_date: dayAdd24hs
+        expected_return_date: dayAdd24hs
       });
     }).rejects.toBeInstanceOf(AppError)
   });
@@ -69,7 +68,7 @@ describe('Create Rental', () => {
       await createRentalUseCase.execute({
         user_id: "123451",
         car_id: "test",
-        expect_return_date: dayjs().toDate()
+        expected_return_date: dayjs().toDate()
       });
     }).rejects.toBeInstanceOf(AppError)
   });

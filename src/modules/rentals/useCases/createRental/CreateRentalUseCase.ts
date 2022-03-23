@@ -23,7 +23,7 @@ class CreateRentalUseCase {
   async execute( {
     user_id,
     car_id,
-    expected_return_date
+    expected_return_date: expected_return_date
   }: IRequest): Promise<Rental>{
 
     const minimumRentalHours = 24;

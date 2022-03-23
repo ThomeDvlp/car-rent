@@ -1,4 +1,4 @@
-import { CategoriesRepositoryInMemory } from "@modules/cars/repositories/in-memory/CategoriesRepositoyInMemory"
+import { CategoriesRepositoryInMemory } from "@modules/cars/repositories/in-memory/CategoriesRepositoryInMemory"
 import { AppError } from "@shared/errors/AppError";
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
@@ -12,7 +12,7 @@ describe('Create Category', () => {
     createCategoryUseCase = new CreateCategoryUseCase(categoriesRepositoryInMemory)
   })
 
-  it('shoul be able to create a new category', async () => {  
+  it('should be able to create a new category', async () => {  
     const category = {name: 'test category', description: 'test description'}
     await createCategoryUseCase.execute (category);
 
@@ -20,7 +20,7 @@ describe('Create Category', () => {
 
     expect(categoryCreated).toHaveProperty('id');
   });
-  it('shoul not be able to create categories with the same name', async () => {  
+  it('should not be able to create categories with the same name', async () => {  
     expect(async ()=> {
       const category = {name: 'test category', description: 'test description'}
       await createCategoryUseCase.execute (category);
