@@ -1,13 +1,12 @@
 import { hash } from 'bcryptjs';
 import request from 'supertest';
-import { v4 as uuidV4 } from 'uuid';
 import { Connection } from 'typeorm';
+import { v4 as uuidV4 } from 'uuid';
 
 import { app } from '@shared/infra/http/app';
 import createConnection from "@shared/infra/typeorm"
 
 let connection: Connection;
-
 describe('Create Category Controller', () => {
   beforeAll(async() => {
     connection = await createConnection();
@@ -24,7 +23,7 @@ describe('Create Category Controller', () => {
   });
 
   afterAll( async ()=>{
-    // await connection.dropDatabase();
+    await connection.dropDatabase();
     await connection.close();
   })
 
@@ -34,11 +33,16 @@ describe('Create Category Controller', () => {
       password: 'admin'
     });
 
-    console.log(responseToken.body);
+    const { token } = await responseToken.body
 
-    const response = await request(app).post("/categories").send({
-      name: 'Category Supertest',
-      description: 'TestDescriptions'
+    const response = await request(app)
+      .post("/categories")
+      .send({
+        name: 'Category Supertest',
+        description: 'TestDescriptions'
+    })
+    .set({
+      Authorization: `Bearer ${token}`,
     });
 
     expect(response.status).toBe(201);
