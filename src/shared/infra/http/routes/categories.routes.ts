@@ -20,7 +20,6 @@ categoriesRoutes.post(
   '/', 
   ensureAuthenticated, 
   ensureAdmin, 
-  upload.single("file"), 
   importCategoryController.handle
   );
 
