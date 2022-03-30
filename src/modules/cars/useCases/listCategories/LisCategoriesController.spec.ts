@@ -7,7 +7,7 @@ import { app } from '@shared/infra/http/app';
 import createConnection from "@shared/infra/typeorm"
 
 let connection: Connection;
-describe('Create Category Controller', () => {
+describe('List Categories Controller', () => {
   beforeAll(async() => {
     connection = await createConnection();
     await connection.runMigrations();
@@ -25,46 +25,31 @@ describe('Create Category Controller', () => {
   afterAll( async ()=>{
     await connection.dropDatabase();
     await connection.close();
+  });
+
+  it('It should be able to list all categories', async () => {
+    const responseToken = await request(app).post('/sessions').send({
+      email: 'admin@carrent.com',
+      password: 'admin'
+    });
+
+    const { token } = await responseToken.body
+
+    await request(app)
+      .post("/categories")
+      .send({
+        name: 'Category Supertest',
+        description: 'TestDescriptions'
+    })
+    .set({
+      Authorization: `Bearer ${token}`,
+    });
+
+    const response = await request(app).get("/categories");
+
+    console.log(response.body);
+
+    expect(response.status).toBe(200);
+    expect(response.body.length).toBe(1);
   })
-
-  it('It should be able to create a new category', async () => {
-    const responseToken = await request(app).post('/sessions').send({
-      email: 'admin@carrent.com',
-      password: 'admin'
-    });
-
-    const { token } = await responseToken.body
-
-    const response = await request(app)
-      .post("/categories")
-      .send({
-        name: 'Category Supertest',
-        description: 'TestDescriptions'
-    })
-    .set({
-      Authorization: `Bearer ${token}`,
-    });
-
-    expect(response.status).toBe(201);
-  });
-  it('It should no be able to create a new category with same name', async () => {
-    const responseToken = await request(app).post('/sessions').send({
-      email: 'admin@carrent.com',
-      password: 'admin'
-    });
-
-    const { token } = await responseToken.body
-
-    const response = await request(app)
-      .post("/categories")
-      .send({
-        name: 'Category Supertest',
-        description: 'TestDescriptions'
-    })
-    .set({
-      Authorization: `Bearer ${token}`,
-    });
-
-    expect(response.status).toBe(400);
-  });
 });

@@ -20,7 +20,7 @@ categoriesRoutes.post(
   '/', 
   ensureAuthenticated, 
   ensureAdmin, 
-  importCategoryController.handle
+  createCategoryController.handle
   );
 
 categoriesRoutes.get('/', listCategoriesController.handle);
