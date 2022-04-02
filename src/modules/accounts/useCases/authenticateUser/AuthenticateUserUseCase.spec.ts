@@ -2,16 +2,16 @@ import { AppError } from "../../../../shared/errors/AppError";
 import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO"
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 import { CreateUserUseCase } from "@modules/accounts/useCases/createUser/CreateUserUseCase";
-import { AuthenticateUserUseCase } from "@modules/accounts/useCases/authenticateUser/AutenticateUserUseCase";
+import { AuthenticateUserUseCase } from "@modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase";
 
-let authenticaseUserUseCase: AuthenticateUserUseCase;
+let authenticateUserUseCase: AuthenticateUserUseCase;
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let createUserUseCase: CreateUserUseCase;
 
 describe('Authenticate User', () => {
   beforeEach(() => {
     usersRepositoryInMemory = new UsersRepositoryInMemory();
-    authenticaseUserUseCase = new AuthenticateUserUseCase(usersRepositoryInMemory);
+    authenticateUserUseCase = new AuthenticateUserUseCase(usersRepositoryInMemory);
     createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
   })
   it('Shoul be possible to authenticate an user', async () => {
@@ -23,7 +23,7 @@ describe('Authenticate User', () => {
     }
     await createUserUseCase.execute (user);
 
-    const result = await authenticaseUserUseCase.execute({
+    const result = await authenticateUserUseCase.execute({
       email: user.email,
       password: user.password 
     })
@@ -31,7 +31,7 @@ describe('Authenticate User', () => {
     expect(result).toHaveProperty('token');
   });
   it('Shoul not be able to authenticate an nonExistent user', async () => {
-    await expect( authenticaseUserUseCase.execute({
+    await expect( authenticateUserUseCase.execute({
         email: 'TestPassword', 
         password: 'TestPassword'
         })
@@ -47,7 +47,7 @@ describe('Authenticate User', () => {
       };
       await createUserUseCase.execute(user);
 
-      await authenticaseUserUseCase.execute({
+      await authenticateUserUseCase.execute({
         email:'test@user.mail',
         password:'incorrectPassword'
       })
