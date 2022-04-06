@@ -58,7 +58,7 @@ Usuário deve coonseguir cadastrar mais de uma imagem para o mesmo carro.
 
 O Usuário responsável pelo cadastro deve  administrador.
 
-# Aluguel de carros
+# Aluguel de carro
 
 **RF**
 
@@ -68,6 +68,20 @@ DEve ser possível cadastrar um aluguel
 
 O aluguel deve ter duração mínima 24 horas.
 
-Não deve ser possível cadastrar um novo aluguelk caso já exista um aberto para o mesmo usuário.
+Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo usuário.
 
-Não deve ser possível cadastrar um novo aluguelk caso já exista um aberto para o mesmo carro.
+Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo carro.
+
+Ao realizar um aluguel o status do carro deverá ser alterado para indisponível.
+
+# Devolução de carro
+
+Se o carro for devolvido em menos de 24 horas deverá ser cobrado um aluguel completo.
+
+Ao ser realizada a devolução o carro deverá ser liverado para outro aluguel.
+
+Na devolução deverá ser cobrado o valor total do aluguel.
+
+Caso o horário de velolução seja superior ao hjorário previsto de devolução deverá ser cobrado multa proporcional aos dias de atraso.
+
+Caso haja multa deverá ser cobradoo no valor total do aluguel.
