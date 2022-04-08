@@ -19,7 +19,7 @@ class ListAvailableCarsUseCase {
     category_id,
     brand,
     name}: IRequest): Promise<Car[]> {
-    const cars = this.carsRepository.findAvailabeCars(
+    const cars = this.carsRepository.findAvailableCars(
       category_id, 
       brand, 
       name

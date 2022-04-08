@@ -8,7 +8,7 @@ import { CarsRepositoryInMemory } from "@modules/cars/repositories/in-memory/Car
 let createRentalUseCase: CreateRentalUseCase;
 let rentalsRepositoryInMemory: RentalsRepositoryInMemory;
 let carsRepositoryInMemory: CarsRepositoryInMemory;
-let dyaJsDateProvider: DayJsDateProvider
+let dayJsDateProvider: DayJsDateProvider
 
 describe('Create Rental', () => {
   const dayAdd24hs = dayjs().add(1, "day").toDate();
@@ -16,10 +16,10 @@ describe('Create Rental', () => {
   beforeEach(() => {
     rentalsRepositoryInMemory = new RentalsRepositoryInMemory();
     carsRepositoryInMemory = new CarsRepositoryInMemory();
-    dyaJsDateProvider = new DayJsDateProvider();
+    dayJsDateProvider = new DayJsDateProvider();
     createRentalUseCase = new CreateRentalUseCase(
       rentalsRepositoryInMemory, 
-      dyaJsDateProvider,
+      dayJsDateProvider,
       carsRepositoryInMemory
       );
   })

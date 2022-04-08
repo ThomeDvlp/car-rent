@@ -44,7 +44,7 @@ class CarsRepository implements ICarsRepository {
     return car;
   }
 
-  async findAvailabeCars(
+  async findAvailableCars(
     category_id?: string,
     brand?: string, 
     name?: string
@@ -67,6 +67,18 @@ class CarsRepository implements ICarsRepository {
 
   async findById(id: string): Promise<Car> {
     return await this.repository.findOne(id);
+  }
+
+  // UPDATE CARS SET available = 'true' WHERE id = :id 
+  async updateAvailable(id: string, available: boolean): Promise<void> {
+    await this.repository
+    .createQueryBuilder()
+    .update()
+    .set({available})
+    .where("id = :id")
+    .setParameters({id})
+    .execute();
+
   }
 }
 
