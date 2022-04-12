@@ -1,13 +1,13 @@
 import { inject, injectable } from "tsyringe";
+
 import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
+import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
 import { AppError } from "@shared/errors/AppError";
 import { IDateProvider } from "@shared/container/providers/dateProvider/IDateProvider";
-import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 
 interface IRequest {
   id: string;
-  user_id: string;
 }
 
 @injectable()
@@ -21,9 +21,9 @@ class ReturnRentalUseCase {
     @inject("DayJsDateProvider")
     private dateProvider: IDateProvider,
   ){};
-  async execute({id, user_id}:IRequest, ):Promise<Rental>{
+  async execute({id}:IRequest):Promise<Rental>{
     const rental = await this.rentalsRepository.findById(id);
-    const car = await this.carsRepository.findById(id);
+    const car = await this.carsRepository.findById(rental.car_id);
     const minimumDaily = 1;
 
     if(!rental){

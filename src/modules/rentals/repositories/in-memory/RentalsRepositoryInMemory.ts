@@ -5,6 +5,9 @@ import { IRentalsRepository } from "../IRentalsRepository";
 
 
 class RentalsRepositoryInMemory implements IRentalsRepository {
+  findById(id: string): Promise<Rental> {
+    throw new Error("Method not implemented.");
+  }
 
   rentals: Rental[] = [];
   // constructor(
