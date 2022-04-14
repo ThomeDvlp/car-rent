@@ -1,11 +1,11 @@
 import { inject, injectable } from 'tsyringe';
 
+import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { Rental } from '../../infra/typeorm/entities/Rental'
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository'
-import { AppError } from '@shared/errors/AppError';
-import { IDateProvider } from '@shared/container/providers/dateProvider/IDateProvider';
 import { RentalsRepository } from '@modules/rentals/infra/typeorm/repositories/RentalsRepository';
-import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { IDateProvider } from '@shared/container/providers/dateProvider/IDateProvider';
+import { AppError } from '@shared/errors/AppError';
 
 interface IRequest{
   user_id: string;
@@ -26,19 +26,19 @@ class CreateRentalUseCase {
   async execute( {
     user_id,
     car_id,
-    expected_return_date: expected_return_date
+    expected_return_date
   }: IRequest): Promise<Rental>{
 
     const minimumRentalHours = 24;
 
     const unAvailableCar = await this.rentalsRepository.findOpenRentalByCar(car_id);
     if(unAvailableCar){
-      throw new AppError("Car is not available");
+      throw new AppError("Car is unavailable");
     }
 
     const openUser = await this.rentalsRepository.findOpenRentalByUser(user_id);
     if(openUser){
-      throw new AppError(`There´s a rental in progress for this user`)
+      throw new AppError("There´s a rental in progress for this user");
     }
 
     const dateNow = this.dateProvider.dateNow();
